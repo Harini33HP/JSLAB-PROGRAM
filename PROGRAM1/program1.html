@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 10px;
+    }
+    input, select, button {
+      padding: 8px;
+      margin: 6px 0;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Simple Calculator</h2>
+
+  <label for="num1">Number 1:</label>
+  <input type="text" id="num1" placeholder="Enter first number" />
+
+  <label for="num2">Number 2:</label>
+  <input type="text" id="num2" placeholder="Enter second number" />
+
+  <label for="operation">Operation:</label>
+  <select id="operation">
+    <option value="add">Add (+)</option>
+    <option value="subtraction">Subtract (-)</option>
+    <option value="multiplication">Multiply (×)</option>
+    <option value="division">Divide (÷)</option>
+  </select>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      const operation = document.getElementById("operation").value;
+      let result;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Enter a valid number";
+      } else {
+        switch (operation) {
+          case "add":
+            result = num1 + num2;
+            break;
+          case "subtraction":
+            result = num1 - num2;
+            break;
+          case "multiplication":
+            result = num1 * num2;
+            break;
+          case "division":
+            if (num2 === 0) {
+              result = "Invalid (division by zero)";
+            } else {
+              result = num1 / num2;
+            }
+            break;
+          default:
+            result = "Invalid operation";
+        }
+      }
+
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+  </script>
+
+</body>
+</html>
